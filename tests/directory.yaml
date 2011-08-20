@@ -1,0 +1,44 @@
+eddard:
+  username: eddard
+  manager: robert
+  department: Stark
+  division: Management
+  location: Winterfell
+robert:
+  username: robert
+  manager: null
+  department: Baratheon
+  division: Crowned
+  location: Kings Landing
+catelyn:
+  username: catelyn
+  manager: eddard
+  department: Tully
+  division: Administration
+  location: Winterfell
+cersei:
+  username: cersei
+  manager: robert
+  department: Lannister
+  division: Administration
+  location: Kings Landing
+tyrion:
+  username: tyrion
+  manager: cersei
+  department: Lannister
+  division: Adminstration
+  location: Kings Landing
+viserys:
+  username: viserys
+  manager: null
+  department: Targaryen
+  division: Wandering
+  location: Free Cities
+daenrys:
+  username: daenrys
+  manager: viserys
+  department: Targaryen
+  division: Administration
+  location: Free Cities
+  
+

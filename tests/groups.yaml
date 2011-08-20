@@ -1,0 +1,49 @@
+test_empty_criteria:
+  groupname: kings
+  criteria:
+  - manager:
+    - null
+  members:
+    - robert
+    - viserys
+test_multiple_simple_criteria:
+  groupname: administration
+  criteria:
+  - division:
+    - Adminstration
+  - division:
+    - Management
+  - manager:
+    - null
+  members:
+  - tyrion
+  - cersei
+test_single_complex_criteria:
+  groupname: kl_admins
+  criteria:
+  - location:
+    - Kings Landing
+    department:
+    - Administration
+  members:
+  - catelyn
+test_multiple_complex_criteria:
+  groupname: nobility
+  criteria:
+  - location:
+    - Kings Landing
+    department:
+    - Administration
+    - Management
+  - location:
+    - Winterfell
+    department:
+    - Administration
+    - Management
+  members:
+  - robert
+  - cersei
+  - tyrion
+  - eddard
+  - catelyn
+
