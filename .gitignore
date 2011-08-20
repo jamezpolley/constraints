@@ -1,0 +1,8 @@
+.Python
+*.swp
+bin/
+lib/
+man/
+share/
+include/
+*.pyc
