@@ -14,9 +14,9 @@ class Constraints:
 
     for each criterion in the list of criteria:
         for each attribute in the criterion's list of attributes:
-            return all members which match any of the possible values
-        return all members which appear on all lists for the criterion
-    return all members which appear on any criterion's list
+            return the key of any member which matches any of the values
+        return the intersection of the keys from all attributes
+    return the union of the keys from all criteria
     """
 
     def __init__(self, directory):
