@@ -1,11 +1,6 @@
-.PHONY: clean virtualenv virtualenv-clean
+.PHONY: clean virtualenv virtualenv-clean install
 
 all: virtualenv install test
-
-virtualenv: bin/activate
-
-virtualenv-clean:
-	rm -rf bin include lib lib64 share
 
 clean:
 	find . -name \*.pyc -print0 | xargs -0 rm
@@ -17,12 +12,17 @@ clean:
 bin/activate:
 	virtualenv --no-site-packages --distribute .
 
+virtualenv: bin/activate
+
+virtualenv-clean:
+	rm -rf bin include lib lib64 share
+
 freeze:
 	pip freeze -E . > requirements.txt
 
-install: virtualenv
+lib: bin/activate
 	source bin/activate; pip install -E . -r requirements.txt
+	touch -r bin/activate lib
 
-
-test: install
+test: bin/activate lib
 	source bin/activate; unit2 discover -v
