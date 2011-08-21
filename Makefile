@@ -1,6 +1,6 @@
 .PHONY: clean virtualenv virtualenv-clean
 
-all: virtualenv install
+all: virtualenv install test
 
 virtualenv: bin/activate
 
@@ -22,3 +22,7 @@ freeze:
 install: virtualenv
 	pip install -E . -r requirements.txt
 
+bin: install
+
+test: bin
+	source bin/activate; unit2 discover -v

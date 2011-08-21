@@ -33,7 +33,6 @@ class Constraints:
             attr_member_lists.append(self._get_members_for_attr(
                 attr, values, directory))
         for attr_member_list in attr_member_lists:
-            print 'am,aml', attr_members, attr_member_list
             attr_members = attr_members.intersection(attr_member_list)
         return attr_members
 
@@ -44,7 +43,6 @@ class Constraints:
             criterion_member_lists.append(self._get_members_for_criterion(
                 criterion, directory))
         for criterion_member_list in criterion_member_lists:
-            print 'cm, cml', criterion_members, criterion_member_list
             criterion_members = criterion_members.union(criterion_member_list)
         return criterion_members
 
