@@ -19,34 +19,36 @@ class Constraints:
     return all members which appear on any criterion's list
     """
 
-    def _get_members_for_attr(self, attr, values, directory):
+    def __init__(self, directory):
+        self.directory = directory
+
+    def _get_members_for_attr(self, attr, values):
         attr_members = []
-        for member_name, member in directory.items():
+        for member_name, member in self.directory.items():
             if (attr in member and member[attr] in values):
                 attr_members.append(member_name)
         return attr_members
 
-    def _get_members_for_criterion(self, criterion, directory):
+    def _get_members_for_criterion(self, criterion):
         attr_member_lists = []
-        attr_members = set(directory)
+        attr_members = set(self.directory)
         for attr, values in criterion.items():
             attr_member_lists.append(self._get_members_for_attr(
-                attr, values, directory))
+                attr, values))
         for attr_member_list in attr_member_lists:
             attr_members = attr_members.intersection(attr_member_list)
         return attr_members
 
-    def _get_members_for_criteria(self, criteria, directory):
+    def _get_members_for_criteria(self, criteria):
         criterion_member_lists = []
         criterion_members = set()
         for criterion in criteria:
             criterion_member_lists.append(self._get_members_for_criterion(
-                criterion, directory))
+                criterion))
         for criterion_member_list in criterion_member_lists:
             criterion_members = criterion_members.union(criterion_member_list)
         return criterion_members
 
-    def get_members(self, criteria, directory=None):
-        directory = directory or self._directory
-        members = self._get_members_for_criteria(criteria, directory)
+    def get_members(self, criteria):
+        members = self._get_members_for_criteria(criteria)
         return members

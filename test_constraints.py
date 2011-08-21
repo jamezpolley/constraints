@@ -15,31 +15,30 @@ groups=yaml.load(groups_file)
 
 def generate_group_membership_checker(criteria, expected_members):
     def check_group_membership(self):
-        generated_members = self.constrainer.get_members(criteria=criteria,
-                directory=self.directory)
+        generated_members = self.constrainer.get_members(criteria=criteria)
         self.assertItemsEqual(expected_members, generated_members)
     return check_group_membership
 
 class TestConstraints(unittest2.TestCase):
 
     def setUp(self):
-        self.constrainer = Constraints()
         self.groups = groups
         self.directory = directory
+        self.constrainer = Constraints(self.directory)
 
     def test_members_for_attr(self):
         attr = 'location'
         values = ['Free Cities', 'Kings Landing']
         expected_members = ['robert', 'cersei', 'tyrion', 'viserys', 'daenrys']
         generated_members = self.constrainer._get_members_for_attr(
-                attr, values, self.directory)
+                attr, values)
         self.assertItemsEqual(expected_members, generated_members)
 
     def test_members_for_criterion(self):
         criterion = { 'location': ['Winterfell'], 'department': ['Tully'] }
         expected_members = ['catelyn']
         generated_members = self.constrainer._get_members_for_criterion(
-                criterion, self.directory)
+                criterion)
         self.assertItemsEqual(expected_members, generated_members)
 
 for test_name, test_data in groups.items():
