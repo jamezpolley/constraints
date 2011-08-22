@@ -8,7 +8,7 @@ setup (
         description = 'Returns a constrained subset of the members of a dict of dicts',
         author = 'James Polley',
         author_email = 'jamezpolley@gmail.com',
-        url = 'http://pypi.python.org/pypi/contraints/',
+        url = 'https://github.com/jamezpolley/constraints',
         classifiers = [
             'Programming Language :: Python',
             'Programming Language :: Python :: 2.6',
