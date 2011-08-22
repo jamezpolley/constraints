@@ -3,14 +3,14 @@
 import yaml
 import unittest2
 
-from constraints import Constraints
+from constraints.constraints import Constraints
 
 directory = {}
 groups = {}
 
-directory_file=open('testdata/directory.yaml')
+directory_file=open('test/directory.yaml')
 directory=yaml.load(directory_file)
-groups_file=open('testdata/groups.yaml')
+groups_file=open('test/groups.yaml')
 groups=yaml.load(groups_file)
 
 def generate_group_membership_checker(criteria, expected_members, exceptions):

@@ -1,6 +1,6 @@
-.PHONY: clean virtualenv virtualenv-clean install
+.PHONY: clean virtualenv virtualenv-clean test
 
-all: virtualenv install test
+all: virtualenv test
 
 clean:
 	find . -name \*.pyc -print0 | xargs -0 rm

@@ -9,3 +9,4 @@ include/
 .pypirc
 MANIFEST
 dist/
+lib64/

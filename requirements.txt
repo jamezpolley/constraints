@@ -1,7 +1,6 @@
 PyYAML==3.10
 distribute==0.6.19
-ipython==0.11
-nose==1.1.2
 readline==6.2.0
+ipython==0.11
 unittest2==0.5.1
 wsgiref==0.1.2
