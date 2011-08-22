@@ -3,19 +3,19 @@
 import yaml
 import unittest2
 
-from constraints.constraints import Constraints
+from constraints import Constraints
 
 directory = {}
 groups = {}
 
-directory_file=open('test/directory.yaml')
+directory_file=open('testdata/directory.yaml')
 directory=yaml.load(directory_file)
-groups_file=open('test/groups.yaml')
+groups_file=open('testdata/groups.yaml')
 groups=yaml.load(groups_file)
 
-def generate_group_membership_checker(criteria, expected_members):
+def generate_group_membership_checker(criteria, expected_members, exceptions):
     def check_group_membership(self):
-        generated_members = self.constrainer.get_members(criteria=criteria)
+        generated_members = self.constrainer.get_members(criteria, exceptions)
         self.assertItemsEqual(expected_members, generated_members)
     return check_group_membership
 
@@ -42,10 +42,11 @@ class TestConstraints(unittest2.TestCase):
         self.assertItemsEqual(expected_members, generated_members)
 
 for test_name, test_data in groups.items():
+    if 'exceptions' not in test_data:
+        test_data['exceptions'] = None
     test = generate_group_membership_checker(test_data['criteria'],
-            test_data['members'])
+            test_data['members'], test_data['exceptions'])
     setattr(TestConstraints, test_name, test)
-
 test_cases = [TestConstraints]
 
 def load_tests(loader, tests, pattern):

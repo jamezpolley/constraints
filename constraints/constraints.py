@@ -49,6 +49,9 @@ class Constraints:
             criterion_members = criterion_members.union(criterion_member_list)
         return criterion_members
 
-    def get_members(self, criteria):
+    def get_members(self, criteria, exceptions=None):
         members = self._get_members_for_criteria(criteria)
+        if exceptions:
+            if 'additions' in exceptions:
+                members = members.union(exceptions['additions'])
         return members

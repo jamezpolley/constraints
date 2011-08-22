@@ -51,3 +51,15 @@ test_multiple_complex_criteria:
   - tyrion
   - eddard
   - catelyn
+test_additions:
+  groupname: starks
+  criteria:
+  - department:
+    - Stark
+  exceptions:
+    additions:
+    - catelyn
+  members:
+  - eddard
+  - bran
+  - catelyn
