@@ -1,2 +1,2 @@
 include test_constraints.py
-recursive-include testdata *.yaml 
+recursive-include test *.yaml 

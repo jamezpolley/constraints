@@ -6,3 +6,6 @@ man/
 share/
 include/
 *.pyc
+.pypirc
+MANIFEST
+dist/
