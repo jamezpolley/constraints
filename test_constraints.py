@@ -3,7 +3,7 @@
 import yaml
 import unittest2
 
-from constraints import Constraints
+from constraints.constraints import Constraints
 
 directory = {}
 groups = {}
