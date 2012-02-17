@@ -1,28 +1,39 @@
-.PHONY: clean virtualenv virtualenv-clean test
+.PHONY: clean install virtualenv-clean test doc
 
-all: virtualenv test
+ACTIVATE = . bin/activate
 
-clean:
-	find . -name \*.pyc -print0 | xargs -0 rm
-	find . -name \*.dot -print0 | xargs -0 rm
-	find . -name \*.svg -print0 | xargs -0 rm
-	find . -name \*.png -print0 | xargs -0 rm
-	rm -rf bin/ include/ lib/ man/ share/
+all: test doc
 
-bin/activate:
-	virtualenv --no-site-packages --distribute .
+virtualenv: lib/python2.6/site.py
 
-virtualenv: bin/activate
+distclean: virtualenv-clean clean
 
 virtualenv-clean:
-	rm -rf bin include lib lib64 share
+	rm -rf bin include lib lib64 share .pipped build
+
+clean:
+	find . \( -name \*\.pyc -o -name \*\.dot -o -name \*\.svg -o -name \*\.png \) -delete
+	hg clean
+
+lib/python2.6/site.py:
+	virtualenv --no-site-packages .
 
 freeze:
 	pip freeze -E . > requirements.txt
 
-lib: bin/activate
-	source bin/activate; pip install -E . -r requirements.txt
-	touch -r bin/activate lib
+.pipped: requirements.txt
+	$(ACTIVATE) && pip install -E . -r requirements.txt
+	touch -r $^ -m $@
 
-test: bin/activate lib
-	source bin/activate; unit2 discover -v
+install: virtualenv .pipped
+
+test: install
+	$(ACTIVATE) && unit2 discover -t ./ tests/
+	$(ACTIVATE) && cd doc && $(MAKE) doctest
+
+edit:
+	$(EDITOR) *.py tests/*.py tests/*.yaml rules/*.yaml
+
+doc: install
+	$(ACTIVATE) && cd doc && $(MAKE)
+
