@@ -63,3 +63,24 @@ test_additions:
   - eddard
   - bran
   - catelyn
+test_members_for_attr:
+  groupname: big_cities
+  criteria:
+  - location:
+    - Free Cities
+    - Kings Landing
+  members:
+  - robert
+  - cersei
+  - tyrion
+  - viserys
+  - daenrys
+test_members_for_multiple_criteria:
+  groupname: winterfell_tullys
+  criteria:
+  - location:
+    - Winterfell
+    department:
+    - Tully
+  members:
+  - catelyn

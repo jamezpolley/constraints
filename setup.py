@@ -4,7 +4,7 @@ from distutils.core import setup
 setup (
         name = 'constraints',
         packages = ['constraints'],
-        version = '0.9.2',
+        version = '0.9.5',
         description = 'Returns a constrained subset of the members of a dict of dicts',
         author = 'James Polley',
         author_email = 'jamezpolley@gmail.com',
@@ -20,7 +20,8 @@ setup (
         ],
         requires = [
             'PyYAML',
-            'unittest2'
+            'testtools',
+            'testscenarios',
         ],
 
 )

@@ -10,3 +10,4 @@ include/
 MANIFEST
 dist/
 lib64/
+.pipped
